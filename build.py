@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Builds privacy/index.html from the app repo's PRIVACY.md.
 
-Run: python3 build.py ../final_comic_version/PRIVACY.md
+Run: python3 build.py ../gutter-app/PRIVACY.md
 Handles the subset of Markdown the policy uses: #/## headings, - lists, 1. lists,
 paragraphs, **bold**, `code`, bare https links. Blockquotes (maintainer notes) are dropped.
 """
@@ -9,7 +9,7 @@ import html
 import re
 import sys
 
-src = open(sys.argv[1] if len(sys.argv) > 1 else "../final_comic_version/PRIVACY.md").read()
+src = open(sys.argv[1] if len(sys.argv) > 1 else "../gutter-app/PRIVACY.md").read()
 
 
 def inline(text):
