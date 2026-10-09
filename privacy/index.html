@@ -18,32 +18,32 @@
 <main class="wrap policy">
   <div class="kicker">Privacy policy</div>
   <h1>What Gutter does with your data</h1>
-<p><strong>Effective date:</strong> 8 October 2026</p>
-<p><strong>Developer:</strong> Lohan Pieterse, sole developer, South Africa</p>
+<p><strong>Effective date:</strong> 1 October 2026</p>
 <p>Gutter is a comic reader app for Android. This page explains, in plain terms, what the app does and doesn't do with your data.</p>
 <h2>The short version</h2>
 <ul><li>No account, no sign-up, no login.</li><li>No ads, no behavioral analytics, no tracking of what you read or how often you open the app.</li><li>Your comic files, your library index, and your reading progress stay on your device. None of it is uploaded anywhere by Gutter.</li><li>The installed app does request the <code>INTERNET</code> permission. That's covered below — it's not used for anything related to your comics.</li></ul>
 <h2>What Gutter does with your files</h2>
-<p>Gutter uses Android's Storage Access Framework. You pick the folders that contain your comics, and Android grants Gutter access to exactly those folders and nothing else on your device. Gutter reads CBZ, CBR (RAR4/RAR5), CB7, CBT, PDF files and image folders directly from those folders to build your library, generate covers, and show you pages. Your files are read in place — never copied elsewhere, re-uploaded, or shared.</p>
+<p>Gutter uses Android's Storage Access Framework. You pick the folders that contain your comics, and Android grants Gutter access to exactly those folders and nothing else on your device. Gutter reads CBZ, CBR (RAR4 and RAR5), and PDF files directly from those folders to build your library, generate covers, and show you pages. Your files are read in place — never copied elsewhere, re-uploaded, or shared.</p>
 <h2>About the INTERNET permission</h2>
-<p>Gutter requests the <code>INTERNET</code> permission because <strong>Google Play Billing</strong>, the library behind the optional Pro purchase, needs it to talk to Google Play's servers. The library adds the permission whether or not you ever buy Pro.</p>
-<p>Google Play libraries (Billing, In-App Review and WorkManager) also add standard network-related permissions to the app; they are used only for purchases and the optional review prompt, and Gutter itself sends no data.</p>
-<p>Gutter's own code — the part that scans folders, reads archives, and renders pages — makes no network calls of its own. Gutter contains no analytics, crash-reporting, or advertising SDKs. If the app crashes, the only report the developer sees is the anonymous one Google Play collects for every app through Android vitals, under your device's own diagnostics settings.</p>
+<p>Gutter requests the <code>INTERNET</code> permission. It comes from two places, neither of which has anything to do with reading your comics:</p>
+<ol><li><strong>Google Play Billing</strong>, the library behind the optional Pro purchase, requires network access to talk to Google Play's servers and brings the permission in as part of the library. This is present even if you never buy Pro.</li><li><strong>Firebase Crashlytics</strong> (described next) uses it to send crash reports, when that part of the app is active.</li></ol>
+<p>Gutter's own code — the part that scans folders, reads archives, and renders pages — makes no network calls of its own.</p>
+<h2>Crash reporting (Firebase Crashlytics)</h2>
+<p>Gutter uses Firebase Crashlytics, a Google service, to find out when the app crashes so it can be fixed. If the app crashes, Crashlytics automatically sends a report containing:</p>
+<ul><li>Your device model and Android OS version</li><li>The app's version</li><li>The stack trace of the crash</li><li>An installation ID Crashlytics generates for this install of the app — not your name, email, or Google account</li></ul>
+<p>Gutter doesn't hand Crashlytics anything beyond what's listed above: not your comic files, not your library contents, not your reading progress. There's no custom logging or event tracking layered on top of it. This data is processed by Google/Firebase; see Firebase's own privacy information for how they handle it and how long they keep it: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></p>
+<p>Crashlytics is only included in a build if the developer has configured a Firebase project for it (via a <code>google-services.json</code> file). A build without that file — for example, a local debug build — doesn't contain Crashlytics at all and sends no crash data. The version of Gutter published on Google Play is expected to include it.</p>
 <h2>Google Play Billing (Gutter Pro)</h2>
-<p>Gutter offers one optional one-time purchase, "Gutter Pro," which unlocks extras such as reading stats, automatic backup, paper themes, reading presets and custom tap zones, and optional tips. Exporting and re-importing your library — your reading progress, bookmarks, and the list of folders you've added — to a backup file is free. The purchase itself is handled entirely by Google Play Billing. Gutter never sees or stores your payment details (card number, billing address, etc.); it only receives a purchase token and status from Google telling it whether Pro is unlocked. Refunds are handled by Google Play under its refund policy; email the address below if a purchase went wrong. Tips are optional gifts and are not refundable by the developer. See Google's privacy policy for how Play Billing handles your payment information: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></p>
-<p>The backup file Gutter creates is a plain file you choose where to save, using Android's file picker. Gutter doesn't upload it anywhere and doesn't know where you put it. If you choose to save it in a cloud-synced folder, that's between you and that cloud provider, not Gutter.</p>
+<p>Gutter offers one optional one-time purchase, "Gutter Pro," which unlocks exporting and re-importing your library — your reading progress, bookmarks, and the list of folders you've added — to a backup file. The purchase itself is handled entirely by Google Play Billing. Gutter never sees or stores your payment details (card number, billing address, etc.); it only receives a purchase token and status from Google telling it whether Pro is unlocked. See Google's privacy policy for how Play Billing handles your payment information: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></p>
+<p>The backup file Gutter creates for Pro is a plain file you choose where to save, using Android's file picker. Gutter doesn't upload it anywhere and doesn't know where you put it. If you choose to save it in a cloud-synced folder, that's between you and that cloud provider, not Gutter.</p>
 <h2>What's stored on your device</h2>
-<p>Gutter keeps a local, on-device database containing (Gutter keeps nothing on any server):</p>
+<p>Gutter keeps a local, on-device database containing:</p>
 <ul><li>The comics found in your chosen folders, and metadata read from the files themselves (title, page count, a generated cover thumbnail)</li><li>Your reading progress and bookmarks, per comic</li><li>Your app preferences (theme, reader settings)</li></ul>
-<p>Gutter never sends any of this anywhere itself. Two things can move it off the device, and you control both:</p>
-<ul><li><strong>Android's own device backup.</strong> If backup is turned on in your phone's settings, Android includes Gutter's library database and preferences (not your comic files and not cached pages) in your encrypted Google device backup, and restores them when you set up a new phone. This is run by Android and Google, not by Gutter, and you can turn it off in your phone's settings.</li><li><strong>A backup file</strong> you create and choose where to save yourself.</li></ul>
-<p>Uninstalling Gutter deletes everything it stored on the device. Clearing the app's storage from Android's Settings does too.</p>
+<p>None of this leaves your device unless you explicitly create and share a Pro backup file yourself. Uninstalling Gutter deletes all of it. Clearing the app's storage from Android's Settings does too.</p>
 <h2>Children's privacy</h2>
-<p>Gutter isn't directed at children. Gutter itself collects no personal information from anyone, of any age.</p>
+<p>Gutter isn't directed at children and doesn't knowingly collect information from anyone. The crash and billing data described above is the only data that ever leaves the device, and neither identifies who you are.</p>
 <h2>Changes to this policy</h2>
 <p>If this policy changes, the updated version will be posted at the same URL with a new effective date.</p>
-<h2>South Africa (POPIA)</h2>
-<p>Gutter doesn't collect or hold personal information about you. If you have a question about your information, email <a href="mailto:lohan2004pieterse@gmail.com">lohan2004pieterse@gmail.com</a> and you'll get an answer within 30 days.</p>
 <h2>Contact</h2>
 <p>Questions about this policy or the app can be sent to Lohan Pieterse at <a href="mailto:lohan2004pieterse@gmail.com">lohan2004pieterse@gmail.com</a>.</p>
 </main>
